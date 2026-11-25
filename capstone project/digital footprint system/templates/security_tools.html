@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Tools | Footprint AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #0f172a;
+            color: white;
+            padding: 22px 7%;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 35px;
+        }
+
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 15px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eff6ff;
+            border-radius: 8px;
+        }
+
+        .warning {
+            color: #b45309;
+            margin: 8px 0;
+        }
+
+        .note {
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>Footprint AI</h2>
+    <a href="/">Home</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/assessment">Assessment</a>
+    <a href="/history">History</a>
+    <a href="/logout">Logout</a>
+</header>
+
+<div class="container">
+
+    <h1>Cybersecurity Tools</h1>
+    <p class="subtitle">
+        Check password strength and identify suspicious URL indicators.
+    </p>
+
+    <div class="tools">
+
+        <div class="card">
+            <h2>🔐 Password Strength Checker</h2>
+
+            <form action="/check-password" method="POST">
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter a test password"
+                    maxlength="128"
+                    required
+                >
+
+                <button type="submit">Check Password</button>
+            </form>
+
+            {% if password_strength %}
+            <div class="result">
+                <h3>Strength: {{ password_strength }}</h3>
+            </div>
+            {% endif %}
+
+            <p class="note">
+                Your password is checked by the application and is not stored.
+                Use a test password rather than your actual account password.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>🌐 Phishing URL Detector</h2>
+
+            <form action="/check-url" method="POST">
+                <input
+                    type="text"
+                    name="url"
+                    placeholder="Enter a website URL"
+                    maxlength="2048"
+                    required
+                >
+
+                <button type="submit">Analyze URL</button>
+            </form>
+
+            {% if url_result %}
+            <div class="result">
+                <h3>Result: {{ url_result }}</h3>
+
+                {% for warning in warnings %}
+                <p class="warning">⚠ {{ warning }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <p class="note">
+                This tool checks basic URL warning indicators. It does not
+                visit the website or guarantee that it is safe.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

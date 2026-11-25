@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Risk Assessment</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<section class="hero">
+
+    <div class="badge">CYBERSECURITY ASSESSMENT</div>
+
+    <h1>Digital Footprint <span>Assessment</span></h1>
+
+    <p>Answer these questions based on your own online privacy practices.</p>
+
+    <form action="/analyze" method="POST" class="card">
+
+        <h3>1. Social Media Exposure</h3>
+
+        <p>Is your social media profile public?</p>
+
+        <select name="social" required>
+            <option value="0">No – Private profile</option>
+            <option value="1">Partially public</option>
+            <option value="2">Yes – Public profile</option>
+        </select>
+
+        <br><br>
+
+        <h3>2. Personal Information Exposure</h3>
+
+        <p>Do you share personal information publicly?</p>
+
+        <select name="personal" required>
+            <option value="0">No</option>
+            <option value="1">Some information</option>
+            <option value="2">Yes, frequently</option>
+        </select>
+
+        <br><br>
+
+        <h3>3. Location Privacy</h3>
+
+        <p>Do you share your live location publicly?</p>
+
+        <select name="location" required>
+            <option value="0">Never</option>
+            <option value="1">Sometimes</option>
+            <option value="2">Frequently</option>
+        </select>
+
+        <br><br>
+
+        <h3>4. Account Security</h3>
+
+        <p>Do you use two-factor authentication?</p>
+
+        <select name="security" required>
+            <option value="0">Yes, on important accounts</option>
+            <option value="1">Only on some accounts</option>
+            <option value="2">No</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit" class="primary-btn">
+            Analyze My Risk →
+        </button>
+
+    </form>
+
+</section>
+
+</body>
+</html>

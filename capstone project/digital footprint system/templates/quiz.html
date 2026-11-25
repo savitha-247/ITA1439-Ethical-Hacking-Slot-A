@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Awareness Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .quiz-container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 25px;
+        }
+
+        .question-card {
+            background: white;
+            color: #202b45;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.1);
+        }
+
+        .question-card label {
+            display: block;
+            margin: 12px 0;
+            cursor: pointer;
+        }
+
+        .quiz-button {
+            padding: 13px 25px;
+            background: #263b80;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #result {
+            color: #16834b;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">◈ FOOTPRINT AI</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/learning">Learning Center</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="quiz-container">
+
+    <h1>🧠 Cybersecurity Awareness Quiz</h1>
+    <p>Answer these questions to evaluate your security awareness.</p>
+
+    <form id="quizForm">
+
+        <div class="question-card">
+            <h3>1. Which is the strongest password?</h3>
+            <label><input type="radio" name="q1" value="0"> password123</label>
+            <label><input type="radio" name="q1" value="1"> T!ger#92Moon@45</label>
+            <label><input type="radio" name="q1" value="0"> 12345678</label>
+        </div>
+
+        <div class="question-card">
+            <h3>2. What should you do with a suspicious email link?</h3>
+            <label><input type="radio" name="q2" value="0"> Click immediately</label>
+            <label><input type="radio" name="q2" value="1"> Verify the sender and link before interacting</label>
+            <label><input type="radio" name="q2" value="0"> Share it with friends</label>
+        </div>
+
+        <div class="question-card">
+            <h3>3. What does HTTPS indicate?</h3>
+            <label><input type="radio" name="q3" value="1"> An encrypted connection to the website</label>
+            <label><input type="radio" name="q3" value="0"> The website is always trustworthy</label>
+            <label><input type="radio" name="q3" value="0"> The website is virus-free</label>
+        </div>
+
+        <div class="question-card">
+            <h3>4. Why should location permissions be reviewed?</h3>
+            <label><input type="radio" name="q4" value="0"> To increase advertisements</label>
+            <label><input type="radio" name="q4" value="1"> To prevent unnecessary location exposure</label>
+            <label><input type="radio" name="q4" value="0"> To share location with everyone</label>
+        </div>
+
+        <div class="question-card">
+            <h3>5. What is the purpose of two-factor authentication?</h3>
+            <label><input type="radio" name="q5" value="1"> To add an extra layer of account security</label>
+            <label><input type="radio" name="q5" value="0"> To remove passwords</label>
+            <label><input type="radio" name="q5" value="0"> To make accounts public</label>
+        </div>
+
+        <button type="button" class="quiz-button" onclick="checkQuiz()">
+            Submit Quiz
+        </button>
+
+    </form>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+function checkQuiz() {
+    let score = 0;
+    let total = 5;
+
+    for (let i = 1; i <= total; i++) {
+        let answer = document.querySelector(
+            'input[name="q' + i + '"]:checked'
+        );
+
+        if (!answer) {
+            alert("Please answer all questions.");
+            return;
+        }
+
+        score += Number(answer.value);
+    }
+
+    let percentage = (score / total) * 100;
+
+    let level = percentage >= 80 ? "Excellent Awareness" :
+                percentage >= 60 ? "Good Awareness" :
+                "Needs Improvement";
+
+    document.getElementById("result").innerHTML =
+        "Your Score: " + score + "/" + total +
+        " (" + percentage + "%)<br>" + level;
+}
+</script>
+
+</body>
+</html>

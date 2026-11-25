@@ -1,0 +1,72 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .recommendations {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .recommendation-card {
+            background: #fff;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+        }
+        .recommendation-card h3 {
+            color: #263b80;
+        }
+        .recommendation-card p {
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">◈ FOOTPRINT AI</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/security-tools">Security Tools</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <section class="recommendations">
+        <h1>Security Recommendations 🛡️</h1>
+        <p>Improve your digital privacy and protect your online identity.</p>
+
+        <div class="recommendation-card">
+            <h3>🔐 Password Protection</h3>
+            <p>Use strong passwords with uppercase, lowercase, numbers and special characters. Enable two-factor authentication.</p>
+        </div>
+
+        <div class="recommendation-card">
+            <h3>🌐 Safe Browsing</h3>
+            <p>Avoid suspicious links, verify website addresses and use HTTPS websites.</p>
+        </div>
+
+        <div class="recommendation-card">
+            <h3>📱 Social Media Privacy</h3>
+            <p>Keep personal profiles private and avoid sharing sensitive information publicly.</p>
+        </div>
+
+        <div class="recommendation-card">
+            <h3>📍 Location Protection</h3>
+            <p>Disable unnecessary location permissions and avoid sharing live location publicly.</p>
+        </div>
+
+        <div class="recommendation-card">
+            <h3>🛡️ Account Security</h3>
+            <p>Update applications regularly, review account activity and use multi-factor authentication.</p>
+        </div>
+    </section>
+</body>
+</html>
+```

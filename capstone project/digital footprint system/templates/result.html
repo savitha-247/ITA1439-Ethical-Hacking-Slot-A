@@ -1,0 +1,109 @@
+?variant="standard" title="Professional Risk Analysis Dashboard" id="58321"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Risk Analysis Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="result-page">
+
+<section class="hero">
+
+    <div class="badge">🛡 ASSESSMENT COMPLETED</div>
+
+    <h1>Your Digital <span>Risk Report</span></h1>
+
+    <div class="card result-card">
+        <h2>Overall Risk Score</h2>
+
+        <h1>{{ score }} / 8</h1>
+
+        <h2>Risk Level: {{ risk }}</h2>
+
+        <div style="width:280px; height:280px; margin:30px auto;">
+            <canvas id="riskChart"></canvas>
+        </div>
+
+        <h2>Security Recommendations</h2>
+
+        {% if risk == "HIGH" %}
+
+            <p>⚠️ Your digital footprint risk is high.</p>
+            <p>1. Make your social media accounts private.</p>
+            <p>2. Avoid sharing personal information publicly.</p>
+            <p>3. Disable unnecessary location sharing.</p>
+            <p>4. Enable Two-Factor Authentication.</p>
+
+        {% elif risk == "MEDIUM" %}
+
+            <p>⚡ Your digital footprint risk is moderate.</p>
+            <p>1. Review your social media privacy settings.</p>
+            <p>2. Reduce publicly visible personal information.</p>
+            <p>3. Limit location sharing.</p>
+            <p>4. Enable 2FA on all important accounts.</p>
+
+        {% else %}
+
+            <p>✅ Your digital footprint risk is low.</p>
+            <p>1. Continue following safe online practices.</p>
+            <p>2. Review your privacy settings regularly.</p>
+            <p>3. Avoid sharing sensitive information.</p>
+            <p>4. Keep Two-Factor Authentication enabled.</p>
+
+        {% endif %}
+
+        <br>
+
+        <a href="/download-report">
+            <button class="primary-btn">
+                Download Risk Report PDF ↓
+            </button>
+        </a>
+
+        <br><br>
+
+        <a href="/">Back to Home</a>
+
+    </div>
+
+</section>
+
+<script>
+    const score = Number("{{ score }}");
+    const remaining = 8 - score;
+
+    new Chart(document.getElementById('riskChart'), {
+        type: 'doughnut',
+
+        data: {
+            labels: ['Risk Score', 'Remaining Score'],
+            datasets: [{
+                data: [score, remaining],
+                backgroundColor: ['#8b5cf6', '#26334d'],
+                borderWidth: 0
+            }]
+        },
+
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

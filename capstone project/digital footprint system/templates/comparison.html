@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Comparison</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .comparison-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 25px;
+        }
+
+        .comparison-card {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .comparison-card h2 {
+            color: #263b80;
+        }
+
+        .status {
+            font-size: 25px;
+            font-weight: bold;
+            color: #16834b;
+        }
+
+        .comparison-card p {
+            line-height: 1.8;
+        }
+        .comparison-card {
+            background: #ffffff;
+            color: #202b45;
+        }
+
+        .comparison-card h1,
+        .comparison-card p {
+            color: #202b45;
+        }
+
+        .comparison-card h2 {
+            color: #263b80;
+        }
+
+        .comparison-card .status {
+            color: #16834b;
+            font-size: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">◈ FOOTPRINT AI</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/history">History</a>
+        <a href="/action-plan">Action Plan</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="comparison-container">
+
+    <h1>📊 Assessment History Comparison</h1>
+
+    <p>Track your digital footprint security progress.</p>
+
+    {% if comparison_data %}
+
+    <div class="comparison-grid">
+
+        <div class="comparison-card">
+            <h2>Previous Assessment</h2>
+            <h1>{{ comparison_data.previous['score'] }}</h1>
+            <p>Risk Level: {{ comparison_data.previous['risk'] }}</p>
+            <p>Date: {{ comparison_data.previous['date'] }}</p>
+        </div>
+
+        <div class="comparison-card">
+            <h2>Latest Assessment</h2>
+            <h1>{{ comparison_data.latest['score'] }}</h1>
+            <p>Risk Level: {{ comparison_data.latest['risk'] }}</p>
+            <p>Date: {{ comparison_data.latest['date'] }}</p>
+        </div>
+
+    </div>
+
+    <div class="comparison-card">
+        <h2>Progress Analysis</h2>
+
+        <p class="status">{{ comparison_data.status }}</p>
+
+        <p>
+            Score Difference:
+            {{ comparison_data.difference }} points
+        </p>
+    </div>
+    <div class="comparison-card">
+        <h2>📄 Download Security Report</h2>
+        <p>Download your latest digital footprint assessment as a PDF.</p>
+
+        <a href="/download-security-report"
+           class="start-risk-btn">
+            Download PDF Report
+        </a>
+    </div>
+    {% else %}
+
+    <div class="comparison-card">
+        <h2>Not Enough Assessment Records</h2>
+        <p>Complete at least two assessments to compare your progress.</p>
+        <a href="/assessment">Start Assessment</a>
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

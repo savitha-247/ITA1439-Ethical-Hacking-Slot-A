@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assessment History</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<section class="hero">
+
+    <div class="badge">📊 USER ANALYTICS DASHBOARD</div>
+
+    <h1>Assessment <span>History</span></h1>
+
+    <p>Track and review your previous digital footprint assessments.</p>
+
+    <div class="card">
+
+        <h2>Previous Assessment Records</h2>
+
+        <div style="overflow-x:auto;">
+
+            <table style="width:100%; color:white; border-spacing:15px; text-align:center;">
+
+                <tr>
+                    <th>ID</th>
+                    <th>Risk Score</th>
+                    <th>Risk Level</th>
+                    <th>Date & Time</th>
+                </tr>
+
+                {% for record in records %}
+
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }} / 8</td>
+
+                    <td>
+                        {% if record[2] == "HIGH" %}
+                            <span style="color:#ff5555;">HIGH</span>
+                        {% elif record[2] == "MEDIUM" %}
+                            <span style="color:#ffc857;">MEDIUM</span>
+                        {% else %}
+                            <span style="color:#35e69a;">LOW</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ record[3] }}</td>
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="4">No assessment records found.</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <br><br>
+
+        <a href="/assessment">
+            <button class="primary-btn">New Assessment</button>
+        </a>
+
+        <br><br>
+
+        <a href="/">Back to Home</a>
+
+    </div>
+
+</section>
+
+</body>
+</html>
+<a href="/download-history">
+    <button type="button" class="primary-btn">
+        📥 Download History (CSV)
+    </button>
+</a>
+<br><br>
+<form action="/clear-history" method="POST" onsubmit="return confirm('Are you sure you want to clear all assessment history?');">
+    <button type="submit" class="primary-btn">
+        🗑️ Clear History
+    </button>
+</form>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Action Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">◈ FOOTPRINT AI</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/security-tools">Security Tools</a>
+        <a href="/recommendations">Recommendations</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div style="max-width:1000px; margin:50px auto; padding:20px;">
+    <h1>🛡️ Your Personalized Security Action Plan</h1>
+    <p>Follow these steps to improve your digital privacy and security.</p>
+
+    {% for item in action_plan %}
+    <div class="card" style="margin:20px 0; padding:25px;">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <strong>Priority: {{ item.priority }}</strong>
+    </div>
+    {% endfor %}
+
+    {% if not action_plan %}
+    <div class="card">
+        <p>Complete a digital footprint assessment to generate your action plan.</p>
+        <a href="/assessment">Start Assessment</a>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Footprint Risk Awareness System</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">◈ FOOTPRINT AI</div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="/dashboard">Dashboard</a>
+
+            <!-- My Activities Dropdown -->
+            <div class="nav-dropdown">
+                <button class="drop-btn">My Activities ▾</button>
+
+                <div class="dropdown-content">
+                    <a href="/history">Assessment History</a>
+                    <a href="/recommendations">Recommendations</a>
+                    <a href="/action-plan">My Action Plan</a>
+                    <a href="/comparison">Compare Assessments</a>
+                </div>
+            </div>
+
+            <!-- Explore Dropdown -->
+            <div class="nav-dropdown">
+                <button class="drop-btn">Explore ▾</button>
+
+                <div class="dropdown-content">
+                    <a href="/security-tools">Security Tools</a>
+                    <a href="/learning">Learning Center</a>
+                    <a href="/quiz">Awareness Quiz</a>
+                </div>
+            </div>
+
+            <!-- Account Dropdown -->
+            <div class="nav-dropdown">
+                <button class="drop-btn">Account ▾</button>
+
+                <div class="dropdown-content">
+                   {% if session.get('role') == 'admin' %}
+                   <a href="/admin-dashboard">Admin Dashboard</a>
+                   {% endif %}
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+
+            <span class="welcome-text">
+                Welcome, {{ session['username'] }}!
+            </span>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="badge">
+            🛡 CYBERSECURITY & PRIVACY PROTECTION
+        </div>
+
+        <h1>
+            INTELLIGENT DIGITAL <br>
+            <span>FOOTPRINT RISK</span><br>
+            AWARENESS SYSTEM
+        </h1>
+
+        <p>
+            Discover your digital presence, identify privacy
+            vulnerabilities and understand your online security risks
+            through intelligent digital footprint assessment.
+        </p>
+
+        <form action="/assessment" method="GET">
+            <button type="submit" class="start-risk-btn">
+                Start Risk Assessment <span>→</span>
+            </button>
+        </form>
+
+    </section>
+
+
+    <!-- FEATURES SECTION -->
+
+    <section class="section" id="features">
+
+        <h2 class="section-title">
+            Digital Footprint Risk Assessment
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <h3>Social Media Exposure</h3>
+                <p>
+                    Evaluate publicly visible social media information
+                    and identify potential privacy risks.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔐</div>
+                <h3>Personal Information Exposure</h3>
+                <p>
+                    Assess the exposure of personal information
+                    and understand its security impact.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📍</div>
+                <h3>Location Privacy</h3>
+                <p>
+                    Identify location-sharing practices and
+                    understand location privacy risks.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT SECTION -->
+
+    <section class="section" id="about">
+
+        <h2 class="section-title">
+            Protect Your Digital Identity
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>Risk Analysis</h3>
+                <p>
+                    Understand your digital footprint risk level.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🛡️</div>
+                <h3>Security Awareness</h3>
+                <p>
+                    Learn how to improve your online privacy.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Risk Report</h3>
+                <p>
+                    View your assessment results and recommendations.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        Intelligent Digital Footprint Risk Awareness System
+        <br><br>
+        Cybersecurity Capstone Project
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
